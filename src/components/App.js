@@ -2,13 +2,13 @@ import React from "react";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 
-function App() {
-  return (
-    <div>
-      <Header />
-      <MainContainer />
-    </div>
-  );
-}
+const [sortType, setSortType] = useState("");
 
-export default App;
+const sortedStocks = [...stocks].sort((a, b) => {
+  if (sortType === "Alphabetically") {
+    return a.ticker.localeCompare(b.ticker);
+  } else if (sortType === "Price") {
+    return a.price - b.price;
+  }
+  return 0;
+});
